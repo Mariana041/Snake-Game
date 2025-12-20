@@ -2,7 +2,8 @@ class Food{
   PVector position;
   float radius;
 
-  Food(){
+  Food(float radius){
+    //this.radius = radius;
     refresh();
   }
 
