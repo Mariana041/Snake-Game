@@ -1,27 +1,22 @@
-class Food{
+class Food
+{
   PVector position;
   float radius;
 
-  Food(float radius){
-    //this.radius = radius;
+  Food(float radius)
+  {
+    this.radius = radius;
     refresh();
   }
 
-  void refresh(){
-    // position = new PVector(random(radius, width - radius), random(radius, height - radius));
-    position = new PVector(random(width),random(height), radius);  
+  void refresh()
+  {
+    position = new PVector(random(radius, width - radius), random(radius, height - radius));
     
-
-    if(food.position.x >= width || food.position.x <= 0){
-      position = new PVector(random(width), random(height), radius);
-    }
-
-    if(food.position.y > height || food.position.y < 0){
-      position = new PVector(random(width), random(height), radius);
-    }
   }
 
-  void draw(){
+  void draw()
+  {
     pushStyle();
 
     noStroke();
