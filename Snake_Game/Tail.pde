@@ -1,23 +1,26 @@
-// ArrayList dos elementos do corpo 
-// crescimento da snake
-// colisão com o corpo 
-
 class Tail
 {
-    // ArrayList da tail
+    // ArrayList da tail - posições dos segmentos 
     ArrayList<PVector> segments;
+    int pendingGrowth = 0;
 
+    //Contrutor
     Tail()
     {
-        segments = new ArrayList<PVector>();
+        segments = new ArrayList<PVector>(); //cria a lista
     }
 
-    // atualiza a cauda com base na posição da cabeça
+    // atualiza a tail baseada na posição da cabeça
     void update(PVector headPosition)
     {
-        if (segments.size() > 0)
+        segments.add(0, headPosition.copy());
+
+        if (pendingGrowth > 0)
         {
-            segments.add(0, headPosition);
+            pendingGrowth--; // cresce → não remove
+        }
+        else if (segments.size() > 0)
+        {
             segments.remove(segments.size() - 1);
         }
     }
@@ -29,7 +32,7 @@ class Tail
 
         fill(col);
         rectMode(CENTER);
-        for (int i = 0; i < segments.size(); i++)
+        for (int i = 0; i < segments.size(); i++) 
         {
             PVector pos = segments.get(i);
             rect(pos.x, pos.y, w, h, 5);
@@ -41,25 +44,21 @@ class Tail
   // adiciona um novo segmento à tail após comer
     void grow()
     {
-        if (segments.size() == 0) segments.add(new PVector(0, 0));
-        else segments.add(segments.get(segments.size() - 1).copy());
+        pendingGrowth++;
     }
 
   // verifica colisão da cabeça com a tail
     boolean checkCollision(PVector headPos, int size)
     {
-        for (int i = 0; i < segments.size(); i++)
+        for (int i = 2; i < segments.size(); i++)
         {
             PVector pos = segments.get(i);
 
-            if (headPos.x + size/2 >= pos.x - size/2 &&
-                headPos.x - size/2 <= pos.x + size/2 &&
-                headPos.y + size/2 >= pos.y - size/2 &&
-                headPos.y - size/2 <= pos.y + size/2)
+            if (headPos.x + size/2 >= pos.x - size/2 && headPos.x - size/2 <= pos.x + size/2 && headPos.y + size/2 >= pos.y - size/2 && headPos.y - size/2 <= pos.y + size/2)
             {
-                return true;
+                return true; // colidiu com a cauda
             }
         }
-        return false;
+        return false; // nao colidiu com a cauda
     }
 }

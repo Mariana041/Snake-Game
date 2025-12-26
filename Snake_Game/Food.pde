@@ -2,17 +2,19 @@ class Food
 {
   PVector position;
   float radius;
+  
 
-  Food(float radius)
+  //Construtor 
+  Food(float radius, int PixelSize)
   {
     this.radius = radius;
-    refresh();
+    refresh(PixelSize); 
   }
 
-  void refresh()
+  //função para definir a posiçao da comida (aleatória dentro dos limites da area de jogo)
+  void refresh(int PixelSize)
   {
-    position = new PVector(random(radius, width - radius), random(radius, height - radius));
-    
+    position = new PVector(random(PixelSize + radius, width - PixelSize - radius), random(PixelSize + radius, height- PixelSize - radius));
   }
 
   void draw()
@@ -22,7 +24,7 @@ class Food
     noStroke();
     fill(255);
     circle(position.x, position.y, radius*2); // circle(x, y, diameter)
-    
+
     popStyle();
   }
 }
