@@ -1,8 +1,12 @@
+// Lista de posições onde a cauda segue o moviemnto da cabeça (classe snake)
+
+
 class Tail
 {
-    // ArrayList da tail - posições dos segmentos 
+    // ArrayList da tail - guarda as posições dos segmentos 
     ArrayList<PVector> segments;
-    int pendingGrowth = 0;
+    // o numero de segmentos que será acrescentado a cauda apos comer
+    int pendingGrowth = 0; 
 
     //Contrutor
     Tail()
@@ -10,7 +14,7 @@ class Tail
         segments = new ArrayList<PVector>(); //cria a lista
     }
 
-    // atualiza a tail baseada na posição da cabeça
+    // atualiza a tail baseada na posição da cabeça (segue a classe snake -> cabeça)
     void update(PVector headPosition)
     {
         segments.add(0, headPosition.copy());

@@ -24,7 +24,8 @@ void draw()
     //snake.update();
     //verificaçao se a cobra colidiu com a comida e aumentar a pontuação
     //atualizar a tail 
-    //ui.drawBorder(cellSize);
+    //ui.drawGrid(PixelSize);
+    //ui.drawBorder(PixelSize);
     //verificar a colisao com a Border
     //desenhar os elementos de jogo
     //drawLives(); 

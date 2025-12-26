@@ -1,13 +1,14 @@
 class Snake // Classe do jogador
 {
+    //Referências
     Food food;
     Tail tail;
     InputManager input;
 
     PVector position, velocity;
-    int snake_width, snake_height;
+    int snake_width, snake_height; //dimensões
     color colour;
-    PVector lastPosition;
+    PVector lastPosition; //guarda a ultima posição 
 
     //Construtor
     //Criador do jogador (é definida a posição, a velocidade, a cor, largura e altura no main)
@@ -25,7 +26,7 @@ class Snake // Classe do jogador
         tail = new Tail(); // inicialização da cauda
     }
 
-    //desenha a snake
+    //desenha a cobra
     private void draw_snake()
     {
         pushStyle();
@@ -40,7 +41,7 @@ class Snake // Classe do jogador
         tail.draw(snake_width, snake_height, colour); // Desenhar a tail
     }
 
-    // atualização da cobra
+    // atualização da cobra guardando a posição anterior 
     void update()
     {
         lastPosition = position.copy();
@@ -55,8 +56,9 @@ class Snake // Classe do jogador
         else if (input.left) position.x -= velocity.x;
         else if (input.right) position.x += velocity.x;
     }
+    
     //verifica a colisão com a comida
-    //Retorna true se comer a comida
+    //se sim então chama a função tail.grow()
     boolean collision()
     {
         if (position.x + snake_width/2 >= food.position.x - food.radius && position.x - snake_width/2 <= food.position.x + food.radius && position.y + snake_height/2 >= food.position.y - food.radius && position.y - snake_height/2 <= food.position.y + food.radius)
@@ -71,10 +73,8 @@ class Snake // Classe do jogador
     //verifica a colisão com os limites do ecra
     boolean hitWall(int PixelSize)
     {
-        return position.x < PixelSize ||
-            position.x >= width - PixelSize ||
-            position.y < PixelSize ||
-            position.y < PixelSize;
+        // parede esquerda || parede direita || parede superior || parede inferior 
+        return position.x - snake_width/2 < PixelSize || position.x + snake_width/2 >= width - PixelSize || position.y - snake_height/2 < PixelSize || position.y + snake_height/2 >= height - PixelSize;
     }
 
     //verifica a colisão com a tail
@@ -82,7 +82,7 @@ class Snake // Classe do jogador
     {
         return tail.checkCollision(position, snake_width);
     }
-    //faz reset a posiçao inicial apos colidir
+    //faz reset a posiçao inicial apos colidir, limpa os segmentos da cauda e mantem a velocida 
     void resetPosition()
     {
         position = new PVector(width/2, height/2); //posiçao inicial

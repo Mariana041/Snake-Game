@@ -1,7 +1,7 @@
 class Food
 {
   PVector position;
-  float radius;
+  float radius; //metade do tamanho da comida
   
 
   //Construtor 
@@ -22,7 +22,7 @@ class Food
     pushStyle();
 
     noStroke();
-    fill(255);
+    fill(255); //mudar a cor da comida
     circle(position.x, position.y, radius*2); // circle(x, y, diameter)
 
     popStyle();

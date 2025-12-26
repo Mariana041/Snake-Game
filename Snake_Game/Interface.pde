@@ -1,7 +1,10 @@
 class Interface
 {
+    //Referencias
     Game game;
-    PImage lifeImg;
+    PImage lifeImg; //imagem da vida
+
+    int offset = 10; //translação da linha para o jogador e comida ficar dentro dos quadrados 
 
     Interface(Game game)
     {
@@ -15,8 +18,14 @@ class Interface
         textSize(20);
         textAlign(LEFT);
         text("Score: " + game.score, 10, 25);
+
+        fill(255);
+        textSize(12);
+        textAlign(RIGHT, BOTTOM);
+        text("Introdução ao Desenvolvimento de Jogos - 2025/26", width - 5, height - 3);
     }
 
+    //numero de vidas 
     void drawLives() 
     {
         for (int i = 0; i < game.lives; i++) 
@@ -37,6 +46,11 @@ class Interface
         textSize(20);
         text("Press SPACE to start", width/2, height/2);
         text("High Score: " + game.highScore, width/2, height/2 + 40);
+
+        textSize(12);
+        textAlign(RIGHT, BOTTOM);
+        text("Mafalda Dias - A049391 \n Marco Sousa - A049181 \n Mariana Cardoso - A041337 \n Mariana Fernandes - A049391 \n", width - 5, height - 10);
+        text("Introdução ao Desenvolvimento de Jogos - 2025/26", width - 5, height - 3);
     }
 
     //game over
@@ -53,34 +67,58 @@ class Interface
         text("Press R to restart", width/2, height/2 + 40);
     }
 
+    //limites do ecra 
     void drawBorder(int PixelSize) 
     {
         fill(100); // cinzento da moldura
         noStroke();
 
-        // Topo
-        for (int x = 0; x < width; x += PixelSize) 
+        // cima
+        for (int x = 0; x < width; x = x + PixelSize) 
         {
-            rect(x, 0, PixelSize, PixelSize);
+            //rect(pos.x, pox.y, width, height)
+            rect(x, 0, PixelSize, PixelSize); 
         }
 
-        // Fundo
-        for (int x = 0; x < width; x += PixelSize) 
+        // baixo
+        for (int x = 0; x < width; x = x + PixelSize) 
         {
             rect(x, height - PixelSize, PixelSize, PixelSize);
         }
 
         // Esquerda
-        for (int y = 0; y < height; y += PixelSize) 
+        for (int y = 0; y < height; y = y + PixelSize) 
         {
             rect(0, y, PixelSize, PixelSize);
         }
 
         // Direita
-        for (int y = 0; y < height; y += PixelSize) 
+        for (int y = 0; y < height; y = y + PixelSize) 
         {
             rect(width - PixelSize, y, PixelSize, PixelSize);
         }
+    }
+
+    void drawGrid(int PixelSize)
+    {
+        
+        stroke(100, 155); // cor das linhas com alpha (transparencia)
+        strokeWeight(0.5);
+
+        // linhas verticais
+        for (int x = offset; x < width; x += PixelSize) 
+        {
+            line(x, 0, x, height);
+        }
+
+        // linhas horizontais
+        for (int y = offset; y < height; y += PixelSize) 
+        {
+            line(0, y, width, y);
+        }
+
+        
+
     }
 
 }

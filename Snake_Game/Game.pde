@@ -31,7 +31,7 @@ class Game
         
     }
 
-    //reicnicar o jogo
+    //reiniciar o jogo
     void reset() 
     {
         gameOver = false;
