@@ -7,13 +7,15 @@ class Tail
     ArrayList<PVector> segments;
     // o numero de segmentos que será acrescentado a cauda apos comer
     int pendingGrowth = 0; 
+    color col;
 
     //Contrutor
     Tail()
     {
         segments = new ArrayList<PVector>(); //cria a lista
+        col = color(16, 144, 16); //cor da tail
+    
     }
-
     // atualiza a tail baseada na posição da cabeça (segue a classe snake -> cabeça)
     void update(PVector headPosition)
     {

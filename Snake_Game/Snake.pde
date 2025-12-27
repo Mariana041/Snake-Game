@@ -37,8 +37,9 @@ class Snake // Classe do jogador
         rect(position.x, position.y, snake_width, snake_height, 5);
 
         popStyle();
+    
 
-        tail.draw(snake_width, snake_height, colour); // Desenhar a tail
+        tail.draw(snake_width, snake_height, tail.col); // Desenhar a tail
     }
 
     // atualização da cobra guardando a posição anterior 

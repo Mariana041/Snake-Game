@@ -27,7 +27,7 @@ class Game
     void endGame() 
     {
         gameOver = true;
-        if (score > highScore) highScore = score;
+        
         
     }
 

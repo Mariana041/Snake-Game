@@ -45,7 +45,7 @@ class Interface
 
         textSize(20);
         text("Press SPACE to start", width/2, height/2);
-        text("High Score: " + game.highScore, width/2, height/2 + 40);
+        
 
         textSize(12);
         textAlign(RIGHT, BOTTOM);
