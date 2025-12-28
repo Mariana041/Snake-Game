@@ -1,93 +1,101 @@
-// ----------------------------
-// DECLARAÇÕES GLOBAIS
-// ----------------------------
+
 Snake snake;
 Food food;
 InputManager input;
 Game game;
 Interface ui;
+ParticleSystem ps;
 
 PImage lifeImg; // PNG para mostrar vidas
-int PixelSize = 20; // tamanho da snake e da comida
+int PixelSize = 20; // tamanho da snake e da comida (unidade de medida do jogo -> tamanho de cada quadrado)
+int deathTimer = 0; //ter um delay após a perder uma vida (para conseguir ver as particulas)
 
-// ----------------------------
-// SETUP DO PROCESSING
-// ----------------------------
+// PERCORRE APENAS UMA VEZ
+
 void setup() {
     size(600, 600);
-    frameRate(10); // Velocidade do jogo
+    frameRate(10); // Velocidade do jogo (Frames por segundo)
 
-    // Carregar PNG da vida (coloque heart.png na pasta "data")
-    lifeImg = loadImage("heart.png");
+    lifeImg = loadImage("heart.png"); //Carregar PNG da vida
 
     // Inicializar objetos
     input = new InputManager();
-    food = new Food(10, PixelSize);
+    food = new Food(10, PixelSize); //(raio, pixelSize)
+
+    //pos, vel, col, width, height, food, input
     snake = new Snake(new PVector(width/2, height/2), new PVector(PixelSize, PixelSize), color(0, 255, 0), PixelSize, PixelSize, food, input);
     game = new Game();
     ui = new Interface(game);
+    ps = new ParticleSystem();
 }
 
 // ----------------------------
 // LOOP PRINCIPAL
 // ----------------------------
-void draw() {
+void draw() 
+{
     background(0);
 
-    if (game.inMenu) {
+    if (game.inMenu) 
+    {
         ui.drawMenu();
         return;
     }
 
-    if (game.gameOver) {
+    if (game.gameOver) 
+    {
         ui.drawGameOver();
         return;
     }
 
-    // 1️⃣ mover a snake (só cabeça)
-    snake.update();
 
-    // 2️⃣ verificar comida
-    boolean ateFood = snake.collision();
-    if (ateFood) {
+    snake.update(); // movimentar a cabeça da cobra (classe snake)
+
+    //verificar se coldiu com a comida 
+    boolean foodConsumed = snake.collision();
+    if (foodConsumed) 
+    {
+        println("colidiu com a comida");
         game.score++;
     }
 
     // 3️⃣ atualizar cauda (AGORA é seguro)
-    if (!snake.position.equals(snake.lastPosition)) {
-    snake.tail.update(snake.lastPosition.copy());
-}
-ui.drawGrid(PixelSize);
-ui.drawBorder(PixelSize);
+    if (!snake.position.equals(snake.lastPosition)) 
+    {
+        snake.tail.update(snake.lastPosition.copy());
+    }
+    ui.drawGrid(PixelSize);
+    ui.drawBorder(PixelSize);
 
     // 4️⃣ verificar morte
-    if (snake.hitWall(PixelSize) || snake.hitTail()) {
-    game.loseLife();
-    snake.resetPosition();
-    food.refresh(PixelSize);  // Gera nova comida, evita comida em lugares errados
-    return;
-}
+    if (snake.hitWall(PixelSize) || snake.hitTail()) 
+    {
+        ps.explosion(snake.position.x, snake.position.y, color(255, 0, 0), 30);
+        game.loseLife();
+        snake.resetPosition();
+        food.refresh(PixelSize);  // Gera nova comida, evita comida em lugares errados
+        return;
+    }
 
     // 5️⃣ desenhar tudo
     food.draw();
+    ps.update();
     snake.draw_snake();
     ui.drawScore();
     drawLives();
 }
 
 
-// ----------------------------
-// DESENHA VIDAS COM PNG
-// ----------------------------
-void drawLives() {
-    for (int i = 0; i < game.lives; i++) {
+
+void drawLives() 
+{
+    for (int i = 0; i < game.lives; i++) 
+    {
         image(lifeImg, 10 + i * (lifeImg.width + 5), height - lifeImg.height - 10);
     }
 }
 
-// ----------------------------
-// INPUT: teclas pressionadas
-// ----------------------------
+
 void keyPressed() {
     // Controle da snake
     if (keyCode == UP)    input.up = true;
@@ -105,9 +113,6 @@ void keyPressed() {
     if (game.gameOver && (key == 'm' || key == 'M')) game.inMenu = true;
 }
 
-// ----------------------------
-// INPUT: teclas soltas
-// ----------------------------
 void keyReleased() {
     if (keyCode == UP)    input.up = false;
     if (keyCode == DOWN)  input.down = false;

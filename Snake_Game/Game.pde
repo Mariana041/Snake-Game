@@ -19,7 +19,12 @@ class Game
     void loseLife() 
     {
         lives--; // Perde uma vida
-        if (lives <= 0) endGame(); //aparece o game over se não houver mais vidas
+        println("perdeu 1 vida");
+        if (lives <= 0) 
+        {
+            endGame(); //aparece o game over se não houver mais vidas
+            println("Perdeu");
+        }
 
     }
 
@@ -27,6 +32,7 @@ class Game
     void endGame() 
     {
         gameOver = true;
+        println("Fim do jogo");
         
         
     }
@@ -37,6 +43,7 @@ class Game
         gameOver = false;
         score = 0;
         lives = 3;
+        
         
     }
 

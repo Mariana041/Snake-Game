@@ -1,7 +1,9 @@
+//Gere a comida do jogo posicionada de forma aleatoria 
+
 class Food
 {
   PVector position;
-  float radius; //metade do tamanho da comida
+  float radius; //metade do tamanho da comida (raio)
   
 
   //Construtor 
