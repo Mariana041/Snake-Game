@@ -96,24 +96,38 @@ void drawLives()
 }
 
 
-void keyPressed() {
+void keyPressed() 
+{
     // Controle da snake
     if (keyCode == UP)    input.up = true;
     if (keyCode == DOWN)  input.down = true;
     if (keyCode == LEFT)  input.left = true;
     if (keyCode == RIGHT) input.right = true;
 
-    // Menu ou restart
-    if (game.inMenu && key == ' ') game.startGame();
-    if (game.gameOver && (key == 'r' || key == 'R')) {
+    
+    if (game.inMenu && key == ' ') 
+    {
+        game.startGame(); // começar o jogo 
+        println("clicou no espaco");
+    }
+
+    if (game.gameOver && (key == 'r' || key == 'R')) 
+    {
         game.reset();
         snake.resetPosition();
         loop(); // retoma draw
+        println("reiniciou o jogo");
     }
-    if (game.gameOver && (key == 'm' || key == 'M')) game.inMenu = true;
+
+    if (game.gameOver && (key == 'm' || key == 'M'))
+    { 
+        game.inMenu = true;
+        println("retoma ao menu inicial");
+    }
 }
 
-void keyReleased() {
+void keyReleased() 
+{
     if (keyCode == UP)    input.up = false;
     if (keyCode == DOWN)  input.down = false;
     if (keyCode == LEFT)  input.left = false;

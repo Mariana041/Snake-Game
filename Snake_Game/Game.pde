@@ -9,6 +9,7 @@ class Game
     //verificvar o inicio do jogo
     void startGame() 
     {
+        println("comecou o jogo");
         inMenu = false;
         gameOver = false;
         score = 0;
@@ -19,7 +20,7 @@ class Game
     void loseLife() 
     {
         lives--; // Perde uma vida
-        println("perdeu 1 vida");
+        println("perdeu 1 vida \n numero de vidas", lives);
         if (lives <= 0) 
         {
             endGame(); //aparece o game over se não houver mais vidas
