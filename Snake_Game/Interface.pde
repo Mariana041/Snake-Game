@@ -58,7 +58,7 @@ class Interface
 
         textSize(12);
         textAlign(RIGHT, BOTTOM);
-        text("Mafalda Dias - A049391 \n Marco Sousa - A049181 \n Mariana Cardoso - A041337 \n Mariana Fernandes - A049391 \n", width - 5, height - 10);
+        text("Mafalda Dias - A049391 \n Marco Sousa - A049181 \n Mariana Cardoso - A041337 \n Mariana Fernandes - A049259 \n", width - 5, height - 10);
         text("Introdução ao Desenvolvimento de Jogos - 2025/26", width - 5, height - 3);
     }
 
