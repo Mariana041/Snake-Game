@@ -46,6 +46,14 @@ class Interface
         textSize(20);
         text("Press SPACE to start", width/2, height/2);
         
+        textSize(25);
+        text("Controls", width/2, height/2 + 55 + 15);
+
+        textSize(15);
+        text("UP, W -> up", width/2, height/2 + 80 + 15);
+        text("DOWN, S -> down", width/2, height/2 + 100 + 15);
+        text("LEFT, A -> left", width/2, height/2 + 120 + 15);
+        text("RIGHT, D -> right", width/2, height/2 + 140 + 15);
 
         textSize(12);
         textAlign(RIGHT, BOTTOM);

@@ -72,6 +72,7 @@ void draw()
     // verificar morte
     if (snake.hitWall(PixelSize) || snake.hitTail()) 
     {
+        //(x, y, col, amount)
         ps.explosion(snake.position.x, snake.position.y, color(255, 0, 0), 30); // criar o sistema de particulas
         game.loseLife(); //perde a vida
         snake.resetPosition(); //faz reset ao centro do ecra
@@ -101,10 +102,10 @@ void drawLives()
 void keyPressed() 
 {
     // Controle da snake
-    if (keyCode == UP)    input.up = true;
-    if (keyCode == DOWN)  input.down = true;
-    if (keyCode == LEFT)  input.left = true;
-    if (keyCode == RIGHT) input.right = true;
+    if (keyCode == UP || key == 'w' || key == 'W') input.up = true;
+    if (keyCode == DOWN || key == 's' || key == 'S') input.down = true;
+    if (keyCode == LEFT || key == 'a' || key == 'A') input.left = true;
+    if (keyCode == RIGHT || key == 'd' || key == 'D') input.right = true;
 
     //teclas do controlo dos menus 
     if (game.inMenu && key == ' ') 
@@ -130,8 +131,8 @@ void keyPressed()
 
 void keyReleased() 
 {
-    if (keyCode == UP)    input.up = false;
-    if (keyCode == DOWN)  input.down = false;
-    if (keyCode == LEFT)  input.left = false;
-    if (keyCode == RIGHT) input.right = false;
+    if (keyCode == UP || key == 'w' || key == 'W') input.up = false;
+    if (keyCode == DOWN || key == 's' || key == 'S') input.down = false;
+    if (keyCode == LEFT || key == 'a' || key == 'A') input.left = false;
+    if (keyCode == RIGHT || key == 'd' || key == 'D') input.right = false;
 }
