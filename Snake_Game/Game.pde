@@ -12,6 +12,7 @@ class Game
         println("comecou o jogo");
         inMenu = false;
         gameOver = false;
+        
         score = 0;
         lives = 3; //valor de vidas no inicio do jogo 
     }

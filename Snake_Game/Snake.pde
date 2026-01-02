@@ -25,7 +25,7 @@ class Snake // Classe do jogador
 
         lastPosition = position.copy();
         tail = new Tail(); // inicialização da cauda
-        direction = new PVector(1, 0); //para se movimentar para a direita sozinha
+        direction = new PVector(1, 0); //para se movimentar para a direita sozinha, velocidade contínua 
     }
 
     //desenha a cobra
@@ -78,10 +78,7 @@ class Snake // Classe do jogador
     //se sim então chama a função tail.grow()
     boolean collision()
     {
-        if (position.x + snake_width/2 >= food.position.x - food.radius && 
-            position.x - snake_width/2 <= food.position.x + food.radius && 
-            position.y + snake_height/2 >= food.position.y - food.radius && 
-            position.y - snake_height/2 <= food.position.y + food.radius)
+        if (position.x + snake_width/2 >= food.position.x - food.radius && position.x - snake_width/2 <= food.position.x + food.radius && position.y + snake_height/2 >= food.position.y - food.radius && position.y - snake_height/2 <= food.position.y + food.radius)
         {
             tail.grow(); //aumenta a cauda
             food.refresh(PixelSize); //uma nova comida é gerada

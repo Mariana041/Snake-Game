@@ -1,6 +1,5 @@
 // Lista de posições onde a cauda segue o moviemnto da cabeça (classe snake)
 
-
 class Tail
 {
     // ArrayList da tail - guarda as posições dos segmentos 

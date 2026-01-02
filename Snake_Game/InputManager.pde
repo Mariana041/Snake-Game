@@ -1,4 +1,4 @@
-// Gerenciamento das teclas 
+// Gestão das teclas 
 
 class InputManager
 {
