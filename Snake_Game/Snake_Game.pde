@@ -24,7 +24,7 @@ void setup()
     food = new Food(10, PixelSize); //(raio, pixelSize)
 
     //pos, vel, col, width, height, food, input
-    snake = new Snake(new PVector(width/2, height/2), new PVector(PixelSize, PixelSize), color(0, 255, 0), PixelSize, PixelSize, food, input);
+    snake = new Snake(new PVector(width/2, height/2), new PVector(PixelSize, PixelSize), color(15,56,15), PixelSize, PixelSize, food, input);
     game = new Game();
     ui = new Interface(game);
     ps = new ParticleSystem();
@@ -35,7 +35,7 @@ void setup()
 
 void draw() 
 {
-    background(0);
+    background(139,172,15);
 
     //verificação do estado do jogo
     if (game.inMenu) 

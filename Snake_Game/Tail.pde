@@ -12,7 +12,7 @@ class Tail
     Tail()
     {
         segments = new ArrayList<PVector>(); //cria a lista
-        col = color(16, 144, 16); //cor da tail
+        col = color(48,98,48); //cor da tail
     
     }
     // atualiza a tail baseada na posição da cabeça (segue a classe snake -> cabeça)

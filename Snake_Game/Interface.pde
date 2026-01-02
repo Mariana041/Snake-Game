@@ -14,10 +14,11 @@ class Interface
     //pontuação durante o jogo
     void drawScore()
     {
-        fill(255);
+        fill(0);
         textSize(20);
         textAlign(LEFT);
-        text("Score: " + game.score, 10, 25);
+        text("Score: " + game.score, 30, 45);
+
 
         fill(255);
         textSize(12);
@@ -37,7 +38,7 @@ class Interface
     //menu inicial
     void drawMenu()
     {
-        fill(255);
+        fill(0);
         textAlign(CENTER);
 
         textSize(40);
@@ -64,7 +65,7 @@ class Interface
     //game over
     void drawGameOver()
     {
-        fill(255, 0, 0);
+        fill(0);
         textAlign(CENTER);
 
         textSize(40);
@@ -114,7 +115,7 @@ class Interface
         strokeWeight(0.5);
 
         // linhas verticais
-        for (int x = offset; x < width; x += PixelSize) 
+        for (int x = 0; x < width; x += PixelSize) 
         {
             line(x, 0, x, height);
         }
