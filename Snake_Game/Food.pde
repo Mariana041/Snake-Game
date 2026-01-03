@@ -16,7 +16,10 @@ class Food
   //função para definir a posiçao da comida (aleatória dentro dos limites da area de jogo)
   void refresh(int PixelSize)
   {
-    position = new PVector(random(PixelSize + radius, width - PixelSize - radius), random(PixelSize + radius, height- PixelSize - radius));
+    //position = new PVector(random(PixelSize + radius, width - PixelSize - radius), random(PixelSize + radius, height- PixelSize - radius));
+    
+    //seleciona uma posição inteira aleatória, multiplica pelo tamanho do pixel (= 20, definido no Snake_Game) e soma metade para descobrir o centro e centralizar o circulo da food
+    position = new PVector(int(random(1, width / PixelSize - 1)) * PixelSize + PixelSize/2, int(random(1, height/PixelSize - 1)) * PixelSize + PixelSize);
   }
 
   void draw()

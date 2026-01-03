@@ -15,6 +15,7 @@ int PixelSize = 20; // tamanho da snake e da comida (unidade de medida do jogo -
 void setup() 
 {
     size(1024, 800);
+    surface.setTitle("SnakeGame"); //mudar titulo da janela de jogo 
     frameRate(10); // Velocidade do jogo (Frames por segundo)
 
     lifeImg = loadImage("heart.png"); //Carregar PNG da vida
@@ -28,6 +29,8 @@ void setup()
     game = new Game();
     ui = new Interface(game);
     ps = new ParticleSystem();
+
+    
 }
 
 // PERCORRE EM LOOP A CADA FRAME
