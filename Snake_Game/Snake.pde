@@ -23,7 +23,6 @@ class Snake // Classe do jogador
         food = f;
         input = im;
 
-        lastPosition = position.copy();
         tail = new Tail(); // inicialização da cauda
         direction = new PVector(1, 0); //para se movimentar para a direita sozinha, velocidade contínua 
     }
@@ -47,7 +46,7 @@ class Snake // Classe do jogador
     // atualização da cobra guardando a posição anterior 
     void update()
     {
-        lastPosition = position.copy();
+        lastPosition = position.copy(); //onde a cobra está agora é igual a posição onde a cobra estava antes 
         update_snake();
     }
 
@@ -62,7 +61,7 @@ class Snake // Classe do jogador
 
     private void update_snake() //constantemente em movimento
     {
-        // mudar direção 
+        // mudar direção (Cima, Baixo, Esquerda, Direita)
         if (input.up && direction.y == 0) direction = new PVector(0, -1);
         
         else if (input.down && direction.y == 0) direction = new PVector(0, 1);
@@ -73,21 +72,25 @@ class Snake // Classe do jogador
         position.x += direction.x * velocity.x;
         position.y += direction.y * velocity.y;
     }
-    
+
+ 
     //verifica a colisão com a comida
     //se sim então chama a função tail.grow()
     boolean collision()
     {
+        //lado esquerdo, direito, cima, baixo
         if (position.x + snake_width/2 >= food.position.x - food.radius && position.x - snake_width/2 <= food.position.x + food.radius && position.y + snake_height/2 >= food.position.y - food.radius && position.y - snake_height/2 <= food.position.y + food.radius)
         {
             tail.grow(); //aumenta a cauda
             food.refresh(PixelSize); //uma nova comida é gerada
-            return true; //colisdiu com a comida
+            return true; //colidiu com a comida
         }   
-        return false; //se nao houver colisão
-    }
+        return false; //se nao houver colisão 
+
+    }   
+
     
-    //verifica a colisão com os limites do ecra
+    //verifica a colisão com os limites do ecra (Nada aconteceu)
     boolean hitWall(int PixelSize)
     {
         // parede esquerda || parede direita || parede superior || parede inferior 

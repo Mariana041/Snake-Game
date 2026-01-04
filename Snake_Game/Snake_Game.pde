@@ -6,7 +6,7 @@ Game game;
 Interface ui;
 ParticleSystem ps;
 
-PImage lifeImg; // PNG para mostrar vidas
+//PImage lifeImg; // PNG para mostrar vidas
 int PixelSize = 20; // tamanho da snake e da comida (unidade de medida do jogo -> tamanho de cada quadrado)
 
 // PERCORRE APENAS UMA VEZ
@@ -18,7 +18,7 @@ void setup()
     surface.setTitle("SnakeGame"); //mudar titulo da janela de jogo 
     frameRate(10); // Velocidade do jogo (Frames por segundo)
 
-    lifeImg = loadImage("heart.png"); //Carregar PNG da vida
+    //lifeImg = loadImage("heart.png"); //Carregar PNG da vida
 
     // Inicializar objetos
     input = new InputManager();
@@ -27,7 +27,7 @@ void setup()
     //pos, vel, col, width, height, food, input
     snake = new Snake(new PVector(width/2, height/2), new PVector(PixelSize, PixelSize), color(15,56,15), PixelSize, PixelSize, food, input);
     game = new Game();
-    ui = new Interface(game);
+    ui = new Interface(game, loadImage("heart.png"));
     ps = new ParticleSystem();
 
     
@@ -60,12 +60,13 @@ void draw()
     boolean foodConsumed = snake.collision();
     if (foodConsumed) 
     {
-        println("colidiu com a comida");
+        println("colidiu com a comida, ", game.score+1 , "pontos");
         game.score++; //Incrementa pontuação
     }
 
     // atualização da cauda
     //Se a cobra se moveu, a cauda deve seguir a posição anterior da cabeça
+    //Verifica se a posição da cabeça atual e a anterior são iguais, isto vai garantir que a tail só mexe a tail se realmente a cabeça não está na mesma posição que a anterior
     if (!snake.position.equals(snake.lastPosition)) snake.tail.update(snake.lastPosition.copy());
     
 
@@ -84,21 +85,11 @@ void draw()
     }
 
     // desenhar todos os elementos
-    ps.update(); //drocessa e desenha o sitema de partículas
+    ps.update(); //processa e desenha o sistema de partículas
     snake.draw_snake(); //desenha a cabeça e os segmentos da cauda
     ui.drawScore(); //desenha o score
     food.draw();
-    drawLives(); //icons da vida
-}
-
-
-
-void drawLives() 
-{
-    for (int i = 0; i < game.lives; i++) 
-    {
-        image(lifeImg, 10 + i * (lifeImg.width + 5), height - lifeImg.height - 10);
-    }
+    ui.drawLives(); //icons da vida
 }
 
 

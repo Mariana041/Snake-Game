@@ -2,13 +2,14 @@ class Interface
 {
     //Referencias
     Game game;
-    PImage lifeImg; //imagem da vida
+    PImage lifeImg; // PNG para mostrar vidas
 
     int offset = 10; //translação da linha para o jogador e comida ficar dentro dos quadrados 
 
-    Interface(Game game)
+    Interface(Game game, PImage lifeImg)
     {
         this.game = game; // Guarda referência
+        this.lifeImg = lifeImg;
     }
 
     //pontuação durante o jogo
@@ -26,12 +27,12 @@ class Interface
         text("Introdução ao Desenvolvimento de Jogos - 2025/26", width - 5, height - 3);
     }
 
-    //numero de vidas 
+    //Renderiza as vidas da cobra 
     void drawLives() 
     {
-        for (int i = 0; i < game.lives; i++) 
+        for (int i = 0; i < game.lives; i++) //Desenha uma imagem por cada vida
         {
-            image(lifeImg, 10 + i * (lifeImg.width + 5), height - lifeImg.height - 10);
+            image(lifeImg, 10 + i * (lifeImg.width + 5), height - lifeImg.height - 10); //image(img, pos_x, pos_y); 
         }
     }
 
